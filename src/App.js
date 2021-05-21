@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import './App.css';
 import ProductPage from './features/Bike/pages/ProductPage';
 import BikesFeature from './features/Bike/index'
@@ -9,6 +9,9 @@ import TopHeader from './components/headers/TopHeader';
 import FixHeader from './components/headers/FixHeader';
 import AboutUs from './components/pages/AboutUs';
 import Footer from './components/Footer';
+import BikeManager from './features/Admin/pages/BikeManager';
+import NavHeader from './components/admin/NavHeader';
+import MainMenu from './components/admin/MainMenu';
 
 
 
@@ -20,20 +23,39 @@ import Footer from './components/Footer';
 function App() {
 
   return (
-    <div className="App">
-      <TopHeader />
-      <FixHeader />
 
-      <Switch>
-      <Route path="/bikes" component={BikesFeature} />
-      <Route path="/checkout" component={CheckoutFeature} />
-      <Route path="/" component={HomePage} exact/>
-      <Route path="/about" component={AboutUs} />
-      
-      </Switch>
-      <Footer />      
+    <div>
+      <Route path="/admin" render={() => {
+        // return JSON.parse(localStorage.getItem('user')).role==='admin' ? <div>
+        return true ? <div>
+          <div id="wrapper">
+            <NavHeader />
+            <MainMenu />
+            <Switch>
+              
+            </Switch>
+            <BikeManager />
+          </div>
+        </div> :
+          <div>
+            <TopHeader />
+            <FixHeader />
+            <Switch>
+              <Route path="/bikes" component={BikesFeature} />
+              <Route path="/checkout" component={CheckoutFeature} />
+              <Route path="/" component={HomePage} exact />
+              <Route path="/about" component={AboutUs} />
+            </Switch>
+            <Footer />
+          </div>
+
+      }} />
+
 
     </div>
+
+
+
 
   );
 }

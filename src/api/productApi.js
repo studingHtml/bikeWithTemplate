@@ -9,7 +9,6 @@ const productApi = {
         // const count = (await axiosClient.get('/products/count')).data;
         const productList = (await axiosClient.get('/api/products')).data;
         const count = 30;
-        console.log(productList);
         return {
             data: productList,
             count: count,

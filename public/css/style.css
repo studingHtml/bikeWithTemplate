@@ -255,13 +255,15 @@
  .our-link ul{
      line-height: 30px;
 }
- .our-link ul li a{
+ .our-link ul li button{
+     background-color: inherit;
+     border: none;
      color: #ffffff;
      font-weight: 700;
      text-transform: uppercase;
      font-size: 14px;
 }
- .our-link ul li a:hover{
+ .our-link ul li button:hover{
      color: #d33b33;
 }
  .our-link ul li:last-child{

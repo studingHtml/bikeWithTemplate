@@ -24,7 +24,6 @@ function CartInPage({ cart, change, remove }) {
 
     const form = useForm({
         defaultValues:{
-
         }
     });
     
@@ -51,7 +50,7 @@ function CartInPage({ cart, change, remove }) {
                                 <tr key={bike.id}>
                                     <td className="thumbnail-img">
                                         <a href="#">
-                                            <img className="img-fluid" src="/images/img-pro-01.jpg" alt="" />
+                                            <img className="img-fluid" src={bike.image} alt="" />
                                         </a>
                                     </td>
                                     <td className="name-pr">

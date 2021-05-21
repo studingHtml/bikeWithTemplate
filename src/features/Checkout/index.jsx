@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router';
-import BikeDetailPage from './pages/BikeDetailPage';
 import CheckoutPage from './pages/CheckoutPage';
 import ShoppingCart from './pages/ShoppingCart';
 
@@ -15,7 +14,7 @@ function CheckoutFeature(props) {
             <Switch>
                 <Route path="/checkout/cart" component={ShoppingCart} />
                 <Route path="/checkout" component={CheckoutPage} exact/>
-                <Route path="/checkout/detail" component={BikeDetailPage} exact/>
+                
             </Switch>
         </div>
     );

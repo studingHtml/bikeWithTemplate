@@ -7,6 +7,7 @@ import CategoryFilter from '../../components/CategoryFilter';
 import { useDispatch, useSelector } from 'react-redux';
 import Hero from '../../../../components/headers/Hero';
 import {increase} from '../../../Checkout/counterSlice';
+import { useForm } from 'react-hook-form';
 
 ProductPage.propTypes = {
 
@@ -47,6 +48,8 @@ function ProductPage({ }) {
     totalBikes: 0,
   }
 
+  const form = useForm();
+  const {register,handleSubmit} = form;
 
   const [filterForApi, setFilterForApi] = useState(defaultFilterForApi);
 
@@ -56,6 +59,9 @@ function ProductPage({ }) {
 
   const [bikes, setBikes] = useState([]);
 
+  const handleSearch = (value)=>{
+    const searchData = value.search;
+  }
 
 
   useEffect(() => {
@@ -68,7 +74,7 @@ function ProductPage({ }) {
     setbikesFromApi(response.data);
     setPagination({
       ...pagination,
-      totalBikes: response.count,
+      totalBikes: response.data.length,
     });
     setBikes(getDataFormPagination(response.data,pagination._page));
 
@@ -118,9 +124,9 @@ function ProductPage({ }) {
             <div className="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
               <div className="product-categori">
                 <div className="search-product">
-                  <form action="#">
-                    <input className="form-control" placeholder="Search here..." type="text" />
-                    <button type="submit"> <i className="fa fa-search" /> </button>
+                  <form onSubmit={handleSubmit(handleSearch)}>
+                    <input className="form-control" placeholder="Search here..." type="text" {...register("search")}/>
+                    <button type="submit" > <i className="fa fa-search" /> </button>
                   </form>
                 </div>
                 <SingleChoiceFilter />

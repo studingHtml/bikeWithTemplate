@@ -62,7 +62,7 @@ function FixHeader(props) {
                     </ul> */}
                 </li>
                 <li className="dropdown active">
-                  <a to="" className="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                  <a to="" className="nav-link dropdown-toggle arrow" data-toggle="dropdown">Shopping</a>
                   <ul className="dropdown-menu">
                     <li><a href="/checkout/cart">Cart</a></li>
                     <li><a href="/checkout">Checkout</a></li>
