@@ -35,7 +35,7 @@ function DefaultBikes({ defaultBikes,addToCart,viewDetail}) {
                     <img src={bike.image} className="img-fluid" alt="This a pic" />
                     <div className="mask-icon">
                       <ul>
-                        <li><a href={`/checkout/detail?id=${bike.id}`} data-toggle="tooltip" data-placement="right" title="View"><i className="fas fa-eye" /></a></li>
+                        <li><a href={`/bikes/detail?id=${bike.id}`} data-toggle="tooltip" data-placement="right" title="View"><i className="fas fa-eye" /></a></li>
                       </ul>
                       <button className="cart" onClick={() => {HandleAddToCart(bike)}}>Add to Cart</button>
                     </div>
@@ -47,9 +47,8 @@ function DefaultBikes({ defaultBikes,addToCart,viewDetail}) {
                 </div>
               </li>
             ))}
-
-
           </ul>
+          
         </div>
       </div>
     </div>
