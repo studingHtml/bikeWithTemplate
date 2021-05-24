@@ -54,9 +54,6 @@ function UpdateForm({ updateBike }) {
 
                     </LockOutlined>
                 </Avatar>
-                <Typography style={{ marginLeft: '180px' }} component="h3" variant="h4" >
-                    Update a Product
-                </Typography>
             </div>
 
 
@@ -68,9 +65,13 @@ function UpdateForm({ updateBike }) {
                 <InputFeild name='quantity' label='Quantity' form={form} />
                 <InputFeild name='category' label='Category' form={form} />
 
-                <button class="btn btn-primary" disableElevation >
-                    <i class="fa fa-edit"></i>Update a Product
+                <button className="btn btn-primary"  >
+                    <i className="fa fa-edit"></i>Update a Product
                 </button>
+
+                <a className="btn btn-default" href="/admin/bikes"  type='submit' style={{float:'right'}}> 
+                    Cancel
+                </a>
             </form>
         </div>
     );

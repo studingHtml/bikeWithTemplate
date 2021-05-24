@@ -3,6 +3,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import CreateABike from '../CreateABike';
 import UpdateABike from '../UpdateABike';
 
@@ -19,20 +20,6 @@ MainTable.defaultProps = {
 
 
 function MainTable({ bikes, deleteABike, updateABike }) {
-    const [open, setOpen] = useState(false);
-    const [isUpdate, setIsUpdate] = useState(true);
-    const [updateBike, setUpdateBike] = useState({});
-
-
-    const handleCreate = () => {
-        setOpen(true);
-        setIsUpdate(false);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
 
     const handleDelete = (id) => {
         if (deleteABike) {
@@ -40,12 +27,7 @@ function MainTable({ bikes, deleteABike, updateABike }) {
         };
     }
 
-    const handleUpdate = (bike) => {
-        setUpdateBike(bike);
-        setOpen(true);
-        setIsUpdate(true);
-    }
-
+    const form = useForm();
 
 
     return (
@@ -53,12 +35,12 @@ function MainTable({ bikes, deleteABike, updateABike }) {
             <div className="col-md-12">
                 {/* Advanced Tables */}
 
-                <div className="panel panel-default">
+                <div className="panel panel-default ">
                     <div className="panel-heading">
-                        <button onClick={handleCreate} className="btn icon-btn btn-success" style={{}} >
+                        <a href="/admin/bikes/create" className="btn icon-btn btn-success" >
                             <span className="glyphicon btn-glyphicon glyphicon-plus img-circle text-success " />
                                     Create A New Bike
-                        </button>
+                        </a>
                         {/* Bikes Managers Tables */}
 
                     </div>
@@ -77,9 +59,12 @@ function MainTable({ bikes, deleteABike, updateABike }) {
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div id="dataTables-example_filter" class="dataTables_filter">
-                                        <label>Search:<input type="search" class="form-control input-sm" aria-controls="dataTables-example" /></label>
-                                    </div>
+                                    <form>
+                                        <div id="dataTables-example_filter" class="dataTables_filter">
+                                            <label>Search:<input type="search" class="form-control input-sm" aria-controls="dataTables-example" /></label>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
                             <table className="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -109,7 +94,7 @@ function MainTable({ bikes, deleteABike, updateABike }) {
                                             <td>{bike.quantity}</td>
                                             <td>{bike.category}</td>
                                             <td><button onClick={() => handleDelete(bike.id)} class="btn btn-danger"><i class="fa fa-pencil"></i> Delete</button></td>
-                                            <td><button onClick={() => handleUpdate(bike)} class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button>
+                                            <td><a href={`/admin/bikes/update?id=${bike.id}`} class="btn btn-primary"><i class="fa fa-edit "></i> Edit</a>
 
                                             </td>
                                         </tr>
@@ -139,21 +124,9 @@ function MainTable({ bikes, deleteABike, updateABike }) {
                 </div>
                 {/*End Advanced Tables */}
             </div>
-            <Dialog disableBackdropClick
-                disableEscapeKeyDown
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="form-dialog-title"
-            >
-                <DialogContent>
-                    {isUpdate ? <UpdateABike bike={updateBike} /> : <CreateABike />}
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                                </Button>
-                </DialogActions>
-            </Dialog>
+
+
+
 
         </div>
     );

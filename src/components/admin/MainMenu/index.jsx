@@ -15,13 +15,13 @@ function MainMenu(props) {
           <div className="sidebar-collapse">
             <ul className="nav" id="main-menu" style={{display:'block'}}>
               <li className="text-center">
-                <img src="assets/img/find_user.png" className="user-image img-responsive" />
+                <img src="/assets/img/find_user.png" className="user-image img-responsive" />
               </li>
               <li>
                 {/* <a className={classNames({
                   "active-menu":
                 })} href="/admin/bike"><i className="fa fa-dashboard fa-3x" /> Bikes</a> */}
-                <a className="active-menu" href="/admin/bike"><i className="fa fa-dashboard fa-3x" /> Bikes</a> */
+                <a className="active-menu" href="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</a> */
               </li>
               <li>
                 <a href="/admin/accounts"><i className="fa fa-desktop fa-3x" /> Accounts</a>

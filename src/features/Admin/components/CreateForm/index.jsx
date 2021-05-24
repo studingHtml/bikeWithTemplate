@@ -54,9 +54,6 @@ function CreateForm(props) {
 
                     </LockOutlined>
                 </Avatar>
-                <Typography style={{ marginLeft: '180px' }} component="h3" variant="h4" >
-                    Create New Product
-                </Typography>
             </div>
 
 
@@ -68,9 +65,13 @@ function CreateForm(props) {
                 <InputFeild name='quantity' label='Quantity' form={form} />
                 <InputFeild name='category' label='Category' form={form} />
 
-                <button class="btn btn-primary" disableElevation type='submit' >
-                    <i class="fa fa-edit"></i> Create New Product
+                <button className="btn btn-primary" type='submit' >
+                    <i className="fa fa-edit"></i> Create New Product
                 </button>
+
+                <a className="btn btn-default" href="/admin/bikes" type='submit' style={{float:'right'}}> 
+                    Cancel
+                </a>
             </form>
         </div>
     );

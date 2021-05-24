@@ -28,7 +28,6 @@ function BikeDetailPage(props) {
   const [bike, setBike] = useState({});
 
   const handleFormSubmit = (value) => {
-    console.log(bike.quantity);
     const quantity = Number(value.quantity);
 
     const index = cart.findIndex(b => b.id == bike.id)
