@@ -1,15 +1,15 @@
-import axiosClient from "./axiosClient";
+import {easyFrontend} from "./axiosClient";
 
 
 const accountApi = {
    
     register(data) {
         const url = `/auth/local/register`;
-        return axiosClient.post(url, data);
+        return easyFrontend.post(url, data);
     },
     login(data) {
         const url = `/auth/local`;
-        return axiosClient.post(url, data);
+        return easyFrontend.post(url, data);
     },
 
     

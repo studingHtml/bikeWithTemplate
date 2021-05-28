@@ -101,6 +101,10 @@ function TopHeader(props) {
       <link rel="stylesheet" href="/css/responsive.css" />
       {/* Custom CSS */}
       <link rel="stylesheet" href="/css/custom.css" />
+
+      <link rel="stylesheet" href="/css/pagination.css" />
+
+
       <div className="main-top">
         <div className="container-fluid">
           <div className="row">

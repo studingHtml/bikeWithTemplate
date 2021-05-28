@@ -25,7 +25,7 @@ function HomePage(props) {
         <div id="slides-shop" className="cover-slides">
           <ul className="slides-container">
             <li className="text-left">
-              <img src="images/banner-01.jpg" alt="" />
+              <img src="/images/demobanner01.jpg" alt="" height='100px'/>
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">
@@ -37,7 +37,7 @@ function HomePage(props) {
               </div>
             </li>
             <li className="text-center">
-              <img src="images/banner-02.jpg" alt="" />
+              <img src="/images/demobanner02.jpg" alt="" height='100px'/>
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">
@@ -49,7 +49,7 @@ function HomePage(props) {
               </div>
             </li>
             <li className="text-right">
-              <img src="images/banner-03.jpg" alt="" />
+              <img src="/images/demobanner03.jpg" alt="" height='100px'/>
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">
@@ -74,22 +74,32 @@ function HomePage(props) {
               
               <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div className="shop-cat-box">
-                  <img className="img-fluid" src="images/wallet-img.jpg" alt="" />
-                  <a className="btn hvr-hover" href="#">Wallet</a>
+                  <img className="img-fluid" src="/images/touring.jpg" alt="" />
+                  <a className="btn hvr-hover" href="#">Touring Bike</a>
                 </div>
                 <div className="shop-cat-box">
-                  <img className="img-fluid" src="images/women-bag-img.jpg" alt="" />
-                  <a className="btn hvr-hover" href="#">Bags</a>
+                  <img className="img-fluid" src="/images/Hybird.jpg" alt="" />
+                  <a className="btn hvr-hover" href="#">Hybird Bike</a>
                 </div>
               </div>
               <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div className="shop-cat-box">
-                  <img className="img-fluid" src="images/shoes-img.jpg" alt="" />
-                  <a className="btn hvr-hover" href="#">Shoes</a>
+                  <img className="img-fluid" src="images/Road.jpg" alt="" />
+                  <a className="btn hvr-hover" href="#">Road Bike</a>
                 </div>
                 <div className="shop-cat-box">
-                  <img className="img-fluid" src="images/women-shoes-img.jpg" alt="" />
-                  <a className="btn hvr-hover" href="#">Women Shoes</a>
+                  <img className="img-fluid" src="images/Fixed Gear Bike.jpg" alt="" />
+                  <a className="btn hvr-hover" href="#">Fixed Gear Bike</a>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div className="shop-cat-box">
+                  <img className="img-fluid" src="images/electrical.jpg" alt="" />
+                  <a className="btn hvr-hover" href="#">Electrical Bike</a>
+                </div>
+                <div className="shop-cat-box">
+                  <img className="img-fluid" src="images/mountain.jpg" alt="" />
+                  <a className="btn hvr-hover" href="#">Mountain Bike</a>
                 </div>
               </div>
             </div>

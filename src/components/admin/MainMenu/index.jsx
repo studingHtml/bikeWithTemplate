@@ -18,13 +18,14 @@ function MainMenu(props) {
                 <img src="/assets/img/find_user.png" className="user-image img-responsive" />
               </li>
               <li>
-                {/* <a className={classNames({
-                  "active-menu":
-                })} href="/admin/bike"><i className="fa fa-dashboard fa-3x" /> Bikes</a> */}
-                <a className="active-menu" href="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</a> */
+                <a className={classNames({
+                  "active-menu":tab==='/admin/bikes'
+                })} href="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</a>
               </li>
               <li>
-                <a href="/admin/accounts"><i className="fa fa-desktop fa-3x" /> Accounts</a>
+              <a className={classNames({
+                  "active-menu":tab==='/admin/accounts'
+                })} href="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Accounts</a>
               </li>
 
             </ul>

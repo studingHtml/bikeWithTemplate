@@ -1,8 +1,8 @@
+import classes from 'classnames';
 import React, { useState } from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
-import classes from 'classnames'
 import { useSelector } from 'react-redux';
-import CartInHeader from '../../../features/Checkout/components/CartInHeader';
+import { NavLink, useLocation, useRouteMatch } from 'react-router-dom';
+import CartInHeader from '../../../features/User/Checkout/components/CartInHeader';
 
 FixHeader.propTypes = {
 
@@ -10,7 +10,7 @@ FixHeader.propTypes = {
 
 function FixHeader(props) {
   const match = useRouteMatch();
-  const [side,setSide] = useState(false);
+  const [side, setSide] = useState(false);
   const closeSide = () => {
     setSide(false);
   }
@@ -18,8 +18,12 @@ function FixHeader(props) {
     setSide(true);
   }
 
-  const counter = useSelector((state)=> state.counter);
-  
+  const location = useLocation();
+  const tab = location.pathname;
+  console.log(tab);
+
+  const counter = useSelector((state) => state.counter);
+
   return (
 
     <div>
@@ -38,39 +42,22 @@ function FixHeader(props) {
             {/* Collect the nav links, forms, and other content for toggling */}
             <div className="collapse navbar-collapse" id="navbar-menu">
               <ul className="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-                <li className="nav-item"><a className="nav-link" href="/about">About Us</a></li>
-                <li className="dropdown megamenu-fw">
-                  <NavLink className="nav-link dropdown-toggle arrow" to="/bikes" data-toggle="dropdown">Product</NavLink>
-                  {/* <ul className="dropdown-menu megamenu-content" role="menu">
-                      <li>
-                        <div className="row">
-                          <div className="col-menu col-md-3">
-                            <h6 className="title">Top</h6>
-                          </div>
-                          <div className="col-menu col-md-3">
-                            <h6 className="title">Bottom</h6>
-                          </div>
-                          <div className="col-menu col-md-3">
-                            <h6 className="title">Clothing</h6>
-                          </div>
-                          <div className="col-menu col-md-3">
-                            <h6 className="title">Accessories</h6>
-                          </div>
-                        </div>
-                      </li>
-                    </ul> */}
+                <li className={classes({ "nav-item": true, "active": tab === "/home" })}><a className="nav-link" href="/home">Home</a></li>
+                <li className={classes({ "nav-item": true, "active": tab === "/about" })}><NavLink className="nav-link" to="/about">About Us</NavLink></li>
+                <li className={classes({ "dropdown megamenu-fw": true, "active": tab === "/bikes" })}>
+                  <a className="nav-link dropdown-toggle arrow" href="/bikes">Product</a>
                 </li>
-                <li className="dropdown active">
-                  <a to="" className="nav-link dropdown-toggle arrow" data-toggle="dropdown">Shopping</a>
+
+                <li className={classes({"dropdown": true,"active": tab.includes("/checkout"),"show": tab.includes("/checkout") })}>
+                  <button className="nav-link dropdown-toggle arrow" data-toggle="dropdown">Shopping</button>
                   <ul className="dropdown-menu">
-                    <li><a href="/checkout/cart">Cart</a></li>
-                    <li><a href="/checkout">Checkout</a></li>
-                    <li><a href="my-account.html">My Account</a></li>
-                    <li><a href="wishlist.html">Wishlist</a></li>
-                    <li><a href="shop-detail.html">Shop Detail</a></li>
+                    <li><NavLink to="/checkout/cart">Cart</NavLink></li>
+                    <li><NavLink to="/checkout">Checkout</NavLink></li>
+                    <li><NavLink to="my-account.html">My Account</NavLink></li>
                   </ul>
                 </li>
+
+
                 <li className="nav-item"><a className="nav-link" href="service.html">Our Service</a></li>
                 <li className="nav-item"><a className="nav-link" href="contact-us.html">Contact Us</a></li>
               </ul>
@@ -80,7 +67,7 @@ function FixHeader(props) {
             <div className="attr-nav">
               <ul>
                 {/* <li className="search"><a href="#"><i className="fa fa-search" /></a></li> */}
-                <li className="side-menu" style={{ cursor: 'pointer' }} onClick={side===true?closeSide:openSide}>
+                <li className="side-menu" style={{ cursor: 'pointer' }} onClick={side === true ? closeSide : openSide}>
                   <i className="fa fa-shopping-bag" />
                   <span className="badge">{counter}</span>
                 </li>
@@ -93,8 +80,8 @@ function FixHeader(props) {
             'side': true,
             'on': side
           })}>
-            <li className="cart-box" style={{position: 'relative'}}>
-            <i className="fas fa-times" style={{marginLeft: '200px'}} onClick={closeSide}></i>
+            <li className="cart-box" style={{ position: 'relative' }}>
+              <i className="fas fa-times" style={{ marginLeft: '200px' }} onClick={closeSide}></i>
               <CartInHeader />
             </li>
           </div>
