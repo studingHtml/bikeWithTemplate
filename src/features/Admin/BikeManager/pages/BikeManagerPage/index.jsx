@@ -52,6 +52,7 @@ function BikeManagerPage(props) {
               <h5>Welcome Hieu , Love to see you back. </h5>
             </div>
           </div>
+          <hr></hr>
           {/* /. ROW  */}
           <MainTable bikes={bikes} deleteABike={deleteABike} />
         </div>

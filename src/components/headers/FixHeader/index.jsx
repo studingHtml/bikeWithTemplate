@@ -36,7 +36,7 @@ function FixHeader(props) {
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                 <i className="fa fa-bars" />
               </button>
-              <a className="navbar-brand" href="/"><img src="/images/logo.png" className="logo" alt="" /></a>
+              <a className="navbar-brand" href="/"><img src="/images/logo.png" height={'70px'} alt="" /></a>
             </div>
             {/* End Header Navigation */}
             {/* Collect the nav links, forms, and other content for toggling */}

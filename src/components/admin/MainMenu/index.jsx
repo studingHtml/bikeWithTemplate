@@ -19,12 +19,12 @@ function MainMenu(props) {
               </li>
               <li>
                 <a className={classNames({
-                  "active-menu":tab==='/admin/bikes'
+                  "active-menu":tab.includes('/admin/bikes')
                 })} href="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</a>
               </li>
               <li>
               <a className={classNames({
-                  "active-menu":tab==='/admin/accounts'
+                  "active-menu":tab.includes('/admin/accounts')
                 })} href="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Accounts</a>
               </li>
 

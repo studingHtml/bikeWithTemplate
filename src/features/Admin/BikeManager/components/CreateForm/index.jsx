@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Avatar } from '@material-ui/core';
+import { Avatar, Icon, Typography } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import InputFeild from '../../../../../components/form-control/InputFeild';
 import {useDropzone} from 'react-dropzone'
+import PublishIcon from '@material-ui/icons/Publish';
 
 
 CreateForm.propTypes = {
@@ -46,14 +47,11 @@ function CreateForm(props) {
 
         form.reset();
     }
-    const fileUploadHandler = () => {
-        console.log('Upload');
-    }
 
     const [files, setFiles] = useState([]);
 
 
-    const { getRootProps, getInputProps } = useDropzone({
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
         accept: "image/*",
         onDrop: (acceptedFiles) => {
             setFiles(
@@ -74,6 +72,20 @@ function CreateForm(props) {
         </div>
     ))
 
+    const dropzoneActive = {
+        borderColor: 'green',
+    }
+
+    const dropzoneStyle = {
+        border: 'dashed 3px',
+        borderColor: '#eee',
+        borderRadius: '5px',
+        paddingTop: '30px', 
+        textAlign: 'center', 
+        height: '200px',
+        width: '200px'
+    }
+
     return (
         <div>
             <div>
@@ -93,21 +105,16 @@ function CreateForm(props) {
                 <InputFeild name='quantity' label='Quantity' form={form} />
                 <InputFeild name='category' label='Category' form={form} />
 
-                <p >Drop image here!</p>
-                <div {...getRootProps()} style={{ width: '210px',height:'160px', borderStyle:'dashed' }}>
+                <div {...getRootProps()} style={isDragActive?{...dropzoneStyle,...dropzoneActive}:dropzoneStyle}>
                         <input {...getInputProps()} />
+                        <PublishIcon style={{ fontSize: 40 }}/>
+                        <Typography>
+                        Drop image here!
+                        </Typography>
                     <div>{images}</div>
                 </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <button onClick={fileUploadHandler}  >
-                    Upload
-                </button>
-                <br />
-                <br />
+                <br/>
+                <br/>
 
                 <button className="btn btn-primary" type='submit' >
                     <i className="fa fa-edit"></i> Create New Product

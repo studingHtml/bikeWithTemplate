@@ -1,5 +1,6 @@
 import { Box, Grid } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
+import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router';
 import './App.css';
@@ -20,7 +21,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000)
-  }, [loading]);
+  }, []);
   const history = useHistory();
   const isAdmin = true;
 
@@ -36,13 +37,21 @@ function App() {
                 <Skeleton variant='rect' height={60}></Skeleton>
                 <Box marginTop={1}>
                   <Grid container >
-                    <Grid ><Skeleton variant='rect' width={270} height={900}></Skeleton></Grid>
+                    {/* <Grid ><Skeleton variant='rect' width={270} height={900}></Skeleton></Grid> */}
                     <Grid item >
+                      <Box marginLeft={8} marginBottom={2}><Skeleton variant="circle" width={160} height={160} /></Box>
+                      <Box marginBottom={1}><Skeleton variant="rect" width={260} height={70} /></Box>
+                      <Skeleton variant="rect" width={260} height={70} />
+                    </Grid>
+
+
+                    <Grid item xs={6}>
                       <Box marginLeft={3} marginTop={2}>
-                        <Skeleton variant='rect' width={1560} height={880}></Skeleton>
+                        <Skeleton variant='rect' width={1595} height={880}></Skeleton>
                       </Box>
                     </Grid>
                   </Grid>
+
 
                 </Box>
               </div> :
@@ -64,17 +73,21 @@ function App() {
 
         }} />
         <Route path="/" render={() => {
-          return (<>
+          return (
+          <>
             <TopHeader />
             <FixHeader />
             <Switch>
               <Route path="/bikes" component={BikesFeature} />
               <Route path="/checkout" component={CheckoutFeature} />
               <Route path="/home" component={HomePage} />
+              <Route path="/" exact component={HomePage} />
               <Route path="/about" component={AboutUs} />
             </Switch>
             <Footer />
-          </>);
+
+          </>
+          );
         }} />
       </Switch>
 

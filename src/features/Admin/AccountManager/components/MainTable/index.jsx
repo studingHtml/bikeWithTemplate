@@ -1,135 +1,141 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Button, Dialog, DialogContent, DialogContentText } from '@material-ui/core';
+import React, { useState } from 'react';
+import CreateAccount from '../../pages/CreateAccount';
 
+AccountManager.propTypes = {
 
-MainTable.propTypes = {
-    bikes: PropTypes.array,
-    deleteABike: PropTypes.func,
-    updateABike: PropTypes.func,
 };
 
-MainTable.defaultProps = {
-    bikes: [],
-};
+function AccountManager(props) {
+    const initialAccounts = [{
+        email: 'vuvietsang10a9@gmail.com',
+        fullName: 'Vu Viet Sang',
+        password: '123456',
+        phoneNum: '0376536924',
+        address: '334',
+        role: 'admin'
 
+    },
+    {
+        email: 'nguyenminhhieu@gmail.com',
+        fullName: 'Nguyen Minh Hieu',
+        password: '123456',
+        phoneNum: '0376536924',
+        address: '334',
+        role: 'admin'
 
-function MainTable({ bikes, deleteABike }) {
+    },
+    {
+        email: 'nguyenkhanhduy@gmail.com',
+        fullName: 'Nguyen Khanh Duy',
+        password: '123456',
+        phoneNum: '0376536924',
+        address: '334',
+        role: 'admin'
 
-    const handleDelete = (id) => {
-        if (deleteABike) {
-            deleteABike(id);
-        };
+    }]
+    const [accounts, setAccounts] = useState(initialAccounts);
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleDeleteClick = (email) => {
+        const newAccount = [...accounts];
+        const index = accounts.findIndex(account => account.email === email);
+        newAccount.splice(index, 1);
+        setAccounts(newAccount);
     }
-
-    const form = useForm();
-    const { register, handleSubmit } = form;
-    const handleSearch = (value) => {
-        console.log(value);
-    }
-
-
-
     return (
-        <div className="row">
-            <div className="col-md-12">
-                {/* Advanced Tables */}
+        <div>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        <CreateAccount />
+                    </DialogContentText>
+                </DialogContent>
+            </Dialog>
 
-                <div className="panel panel-default ">
-                    <div className="panel-heading">
-                        <a href="/admin/bikes/create" className="btn icon-btn btn-success" >
-                            <span className="glyphicon btn-glyphicon glyphicon-plus img-circle text-success " />
-                                    Create A New Bike
-                        </a>
-                        {/* Bikes Managers Tables */}
-
+            {/* /. NAV SIDE  */}
+            <div id="page-wrapper">
+                <div id="page-inner">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h2>Account Manager</h2>
+                            <h5>Welcome to account manager page. </h5>
+                        </div>
                     </div>
-                    <div className="panel-body">
-                        <div className="table-responsive">
-                            <div className="row">
-                                <div className="col-sm-6">
-                                    <div className="dataTables_length" id="dataTables-example_length">
-                                        <label>
-                                            <select name="dataTables-example_length" aria-controls="dataTables-example" className="form-control input-sm">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option><option value="100">100</option>
-                                            </select> records per page
-                                    </label>
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <form onSubmit={handleSubmit(handleSearch)}>
-                                        <div id="dataTables-example_filter" className="dataTables_filter">
-                                            <label>Search:<input type="search" className="form-control input-sm" aria-controls="dataTables-example" {...register('search')} /></label>
-                                        </div>
-                                    </form>
+                    {/* /. ROW  */}
+                    <hr />
+                    <div className='register'>
 
-                                </div>
-                            </div>
-                            <table className="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>image</th>
-                                        <th>name</th>
-                                        <th>maker</th>
-                                        <th>description</th>
-                                        <th>price</th>
-                                        <th>Quantity</th>
-                                        <th>Category</th>
-                                        <th>Delete</th>
-                                        <th>Update</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {bikes.map((bike) => (
-                                        <tr className="gradeU" key={bike.id}>
-                                            <td>{bike.id}</td>
-                                            <td><img width="50px" height="50px" src={bike.image} className="img-fluid" alt="This a pic" /></td>
-                                            <td>{bike.name}</td>
-                                            <td>{bike.maker}</td>
-                                            <td>{bike.description}</td>
-                                            <td>{bike.price}</td>
-                                            <td>{bike.quantity}</td>
-                                            <td>{bike.category}</td>
-                                            <td><button onClick={() => handleDelete(bike.id)} className="btn btn-danger"><i className="fa fa-pencil"></i> Delete</button></td>
-                                            <td><a href={`/admin/bikes/update?id=${bike.id}`} className="btn btn-primary"><i className="fa fa-edit "></i> Edit</a>
 
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            <div className="row">
-                                <div className="col-sm-6">
-                                    <div className="dataTables_info" id="dataTables-example_info" role="alert" aria-live="polite" aria-relevant="all">Showing 1 to 10 of 57 entries</div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-                                        <ul className="pagination">
-                                            <li className="paginate_button previous disabled" aria-controls="dataTables-example" tabIndex="0" id="dataTables-example_previous"><a href="#">Previous</a></li>
-                                            <li className="paginate_button active" aria-controls="dataTables-example" tabIndex="0"><a href="#">1</a></li><li className="paginate_button " aria-controls="dataTables-example" tabIndex="0"><a href="#">2</a></li>
-                                            <li className="paginate_button " aria-controls="dataTables-example" tabIndex="0"><a href="#">3</a></li>
-                                            <li className="paginate_button " aria-controls="dataTables-example" tabIndex="0"><a href="#">4</a></li>
-                                            <li className="paginate_button " aria-controls="dataTables-example" tabIndex="0"><a href="#">5</a></li>
-                                            <li className="paginate_button " aria-controls="dataTables-example" tabIndex="0"><a href="#">6</a></li>
-                                            <li className="paginate_button next" aria-controls="dataTables-example" tabIndex="0" id="dataTables-example_next"><a href="#">Next</a></li>
-                                        </ul>
+                        <Button variant="outlined" color="primary" onClick={handleClickOpen} className="btn icon-btn btn-success" >  <span className="glyphicon btn-glyphicon glyphicon-plus img-circle text-success " />
+                                    Create account </Button></div>
+                    <div className="row">
+                        <div className="col-md-12">
+
+                            {/* Advanced Tables */}
+                            <div className="panel panel-default">
+
+                                <div className="panel-heading">
+                                    Account Table
+            </div>
+                                <div className="panel-body">
+                                    <div className="table-responsive">
+                                        <table className="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th>Email</th>
+                                                    <th>Full Name</th>
+                                                    <th>PhoneNum(s)</th>
+                                                    <th>Address </th>
+                                                    <th>Role</th>
+                                                    <th>Password</th>
+                                                    <th>Delete</th>
+                                                    <th>Update</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {console.log(accounts)}
+                                                {accounts.map(account => (
+                                                    <tr className="odd gradeX" key={accounts.email}>
+                                                        <td>{account.email}</td>
+                                                        <td>{account.fullName}</td>
+                                                        <td>{account.phoneNum}</td>
+                                                        <td>{account.address}</td>
+                                                        <td>{account.role}</td>
+                                                        <td>{account.password}</td>
+
+                                                        <td><button onClick={() => handleDeleteClick(account.email)} className="btn btn-danger"><i className="fa fa-pencil"></i> Delete</button></td>
+                                                        <td><a href={`/admin/accounts/update?email=${account.email}`} className="btn btn-primary"><i className="fa fa-edit "></i> Edit</a></td>
+                                                    </tr>
+                                                ))
+                                                }
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
+                            {/*End Advanced Tables */}
                         </div>
                     </div>
                 </div>
-                {/*End Advanced Tables */}
+                {/* /. PAGE INNER  */}
             </div>
-
-
-
 
         </div>
     );
 }
 
-export default MainTable;
+export default AccountManager;

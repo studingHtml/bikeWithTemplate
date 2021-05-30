@@ -25,23 +25,28 @@ function MainTable({ bikes, deleteABike }) {
     const form = useForm();
     const { register, handleSubmit } = form;
     const handleSearch = (value) => {
-        console.log(value);
+        const searchValue = value.search;
+        console.log(searchValue);
     }
 
+    const handleNumberInPage = (e) =>{
+        const numberInPages = e.target[e.target.selectedIndex].getAttribute('value');
+        console.log(numberInPages);
+    }
 
 
     return (
         <div className="row">
             <div className="col-md-12">
                 {/* Advanced Tables */}
-
+                <a href="/admin/bikes/create" className="btn icon-btn btn-success" >
+                    <span className="glyphicon btn-glyphicon glyphicon-plus img-circle text-success " />
+                                    Create A New Bike
+                </a>
                 <div className="panel panel-default ">
                     <div className="panel-heading">
-                        <a href="/admin/bikes/create" className="btn icon-btn btn-success" >
-                            <span className="glyphicon btn-glyphicon glyphicon-plus img-circle text-success " />
-                                    Create A New Bike
-                        </a>
-                        {/* Bikes Managers Tables */}
+
+                        Bikes Managers Tables
 
                     </div>
                     <div className="panel-body">
@@ -50,18 +55,20 @@ function MainTable({ bikes, deleteABike }) {
                                 <div className="col-sm-6">
                                     <div className="dataTables_length" id="dataTables-example_length">
                                         <label>
-                                            <select name="dataTables-example_length" aria-controls="dataTables-example" className="form-control input-sm">
+                                            <select onChange={handleNumberInPage} name="records" aria-controls="dataTables-example" className="form-control input-sm">
                                                 <option value="10">10</option>
                                                 <option value="25">25</option>
                                                 <option value="50">50</option><option value="100">100</option>
-                                            </select> records per page
+                                            </select>
+                                            <span>records per page</span>
                                     </label>
+                                    
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <form onSubmit={handleSubmit(handleSearch)}>
                                         <div id="dataTables-example_filter" className="dataTables_filter">
-                                            <label>Search:<input type="search" className="form-control input-sm" aria-controls="dataTables-example" {...register('search')} /></label>
+                                        <label>Search:<input type="search" className="form-control input-sm" aria-controls="dataTables-example" {...register('search')} /></label>
                                         </div>
                                     </form>
 

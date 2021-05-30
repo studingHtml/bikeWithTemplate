@@ -104,6 +104,9 @@ function TopHeader(props) {
 
       <link rel="stylesheet" href="/css/pagination.css" />
 
+      <style dangerouslySetInnerHTML={{__html: "\n/* Center the loader */\n#loader {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  z-index: 1;\n  width: 120px;\n  height: 120px;\n  margin: -76px 0 0 -76px;\n  border: 16px solid #f3f3f3;\n  border-radius: 50%;\n  border-top: 16px solid #3498db;\n  -webkit-animation: spin 2s linear infinite;\n  animation: spin 2s linear infinite;\n}\n\n@-webkit-keyframes spin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes spin {\n  0% { transform: rotate(0deg); }\n  100% { transform: rotate(360deg); }\n}\n\n/* Add animation to \"page content\" */\n.animate-bottom {\n  position: relative;\n  -webkit-animation-name: animatebottom;\n  -webkit-animation-duration: 1s;\n  animation-name: animatebottom;\n  animation-duration: 1s\n}\n\n@-webkit-keyframes animatebottom {\n  from { bottom:-100px; opacity:0 } \n  to { bottom:0px; opacity:1 }\n}\n\n@keyframes animatebottom { \n  from{ bottom:-100px; opacity:0 } \n  to{ bottom:0; opacity:1 }\n}\n\n#myDiv {\n  display: none;\n  text-align: center;\n}\n" }} />
+
+
 
       <div className="main-top">
         <div className="container-fluid">
