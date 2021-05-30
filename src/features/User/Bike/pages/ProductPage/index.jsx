@@ -108,10 +108,10 @@ function ProductPage({ }) {
   }
 
 
+
   return (
     <div>
       <Hero title="Shop" />
-
       <div className="shop-box-inner">
         <div className="container">
           <div className="row">
