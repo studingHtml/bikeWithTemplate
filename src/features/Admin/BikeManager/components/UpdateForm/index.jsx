@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import InputFeild from '../../../../../components/form-control/InputFeild';
@@ -14,6 +14,11 @@ UpdateForm.propTypes = {
 };
 
 function UpdateForm({ updateBike }) {
+
+    useEffect(()=>{
+        console.log('cc');
+        console.log(updateBike);
+    })
     
     const schema = yup.object().shape({
         name: yup.string().required('Please enter your name!')
@@ -28,12 +33,12 @@ function UpdateForm({ updateBike }) {
 
     const form = useForm({
         defaultValues: {
-            name: updateBike.name,
-            maker: updateBike.maker,
-            description: updateBike.description,
-            price: updateBike.price,
-            quantity: updateBike.quantity,
-            category: updateBike.category,
+            name: updateBike.name||'',
+            maker: updateBike.maker||'',
+            description: updateBike.description||'',
+            price: updateBike.price||'',
+            quantity: updateBike.quantity||'',
+            category: updateBike.category||'',
         },
         resolver: yupResolver(schema),
     });
@@ -49,14 +54,24 @@ function UpdateForm({ updateBike }) {
         form.reset();
     }
 
-    const fileUploadHandler = () => {
-        console.log('Upload');
-    }
 
     const [files, setFiles] = useState([]);
 
+    const dropzoneStyles = {
+        border: 'dashed 3px',
+        borderColor: '#eee',
+        borderRadius: '5px',
+        paddingTop: '30px',
+        textAlign: 'center',
+        height: '200px',
+        width:'250px'
+    }
 
-    const { getRootProps, getInputProps } = useDropzone({
+    const dropzoneActive ={
+        borderColor: 'green'
+    }
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
         accept: "image/*",
         onDrop: (acceptedFiles) => {
             setFiles(
@@ -97,22 +112,15 @@ function UpdateForm({ updateBike }) {
                 <InputFeild name='category' label='Category' form={form} />
 
                 <p >Drop image here!</p>
-                <div {...getRootProps()} style={{ width: '210px',height:'160px', borderStyle:'dashed' }}>
+                <div {...getRootProps()} style={isDragActive ? {...dropzoneStyles, ...dropzoneActive}: dropzoneStyles}>
                         <input {...getInputProps()} />
                     <div>{images}</div>
                 </div>
                 <br />
                 <br />
                 <br />
-                <br />
-                <br />
-                <button onClick={fileUploadHandler}  >
-                    Upload
-                </button>
-                <br />
-                <br />
 
-                <button className="btn btn-primary"  >
+                <button className="btn btn-primary">
                     <i className="fa fa-edit"></i>Update a Product
                 </button>
 

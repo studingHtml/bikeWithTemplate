@@ -19,7 +19,7 @@ function UpdateABike() {
         const getBike = async ()=> {
             setBike(await productApi.get(bikeId))
         };
-        getBike();        
+        getBike();
     },[])
 
 
